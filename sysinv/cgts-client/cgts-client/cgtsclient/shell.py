@@ -24,10 +24,10 @@ import httplib2
 import logging
 import sys
 
-import cgtsclient
-from cgtsclient import client as cgclient
-from cgtsclient.common import utils
-from cgtsclient import exc
+from . import __version__
+from . import client as cgclient
+from .common import utils
+from . import exc
 
 import os
 
@@ -52,7 +52,7 @@ class CgtsShell(object):
 
         parser.add_argument('--version',
                             action='version',
-                            version=cgtsclient.__version__)
+                            version=__version__)
 
         parser.add_argument('--debug',
                             default=bool(utils.env('SYSTEMCLIENT_DEBUG')),

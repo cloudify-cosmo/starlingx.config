@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient._i18n import _
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ._i18n import _
+from .common import utils
+from . import exc
 
 
 def _get_ksclient(**kwargs):

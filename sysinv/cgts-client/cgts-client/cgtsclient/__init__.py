@@ -13,11 +13,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-try:
-    import cgtsclient.client
-    Client = cgtsclient.client.Client
-except ImportError:
-    import warnings
-    warnings.warn("Could not import cgtsclient.client", ImportWarning)
+from . import client
+Client = client.Client
 
 __version__ = "1.0.0"

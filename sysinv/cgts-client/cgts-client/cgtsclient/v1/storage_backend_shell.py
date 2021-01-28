@@ -11,8 +11,8 @@
 
 import argparse
 
-from cgtsclient.common import utils
-from cgtsclient.v1 import storage_backend as storage_backend_utils
+from ..common import utils
+from ..v1 import storage_backend as storage_backend_utils
 
 
 def _list_formatter(values):

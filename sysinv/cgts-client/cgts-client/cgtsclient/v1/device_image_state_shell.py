@@ -4,8 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from ..v1 import ihost as ihost_utils
 
 
 def do_device_image_state_list(cc, args):

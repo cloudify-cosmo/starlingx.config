@@ -7,7 +7,7 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
+from ..common import base
 
 CREATION_ATTRIBUTES = ['cert_path', 'public_path', 'tpm_path']
 

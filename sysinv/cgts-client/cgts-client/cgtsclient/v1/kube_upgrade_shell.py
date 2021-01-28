@@ -5,8 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 # Kubernetes constants
 KUBE_UPGRADE_STATE_DOWNLOADING_IMAGES = 'downloading-images'

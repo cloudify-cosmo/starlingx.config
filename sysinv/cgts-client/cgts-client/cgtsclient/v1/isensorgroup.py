@@ -7,9 +7,9 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient import exc
-from cgtsclient.v1 import isensor as isensor_utils
+from ..common import base
+from .. import exc
+from ..v1 import isensor as isensor_utils
 
 
 CREATION_ATTRIBUTES = ['host_uuid', 'sensortype', 'datatype',

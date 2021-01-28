@@ -8,11 +8,11 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import datanetwork as datanetwork_utils
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import iinterface as iinterface_utils
+from ..common import utils
+from .. import exc
+from ..v1 import datanetwork as datanetwork_utils
+from ..v1 import ihost as ihost_utils
+from ..v1 import iinterface as iinterface_utils
 
 
 def _print_interface_datanetwork_show(cc, obj):

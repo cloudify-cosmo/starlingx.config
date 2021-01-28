@@ -9,8 +9,8 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 import os.path
 from oslo_utils._i18n import _
 import sys

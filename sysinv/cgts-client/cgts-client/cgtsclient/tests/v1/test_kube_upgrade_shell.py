@@ -6,8 +6,8 @@
 
 import mock
 
-from cgtsclient.tests import test_shell
-from cgtsclient.v1.kube_upgrade import KubeUpgrade
+from ...tests import test_shell
+from ...v1.kube_upgrade import KubeUpgrade
 
 
 class KubeUpgradeTest(test_shell.ShellTest):

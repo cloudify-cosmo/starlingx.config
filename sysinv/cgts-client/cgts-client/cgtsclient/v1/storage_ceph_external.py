@@ -6,8 +6,8 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient import exc
+from ..common import base
+from .. import exc
 import os
 
 CREATION_ATTRIBUTES = ['confirmed', 'name', 'services', 'capabilities',

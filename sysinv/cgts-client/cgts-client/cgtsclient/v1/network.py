@@ -7,9 +7,9 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import base
+from ..common import utils
+from .. import exc
 
 
 CREATION_ATTRIBUTES = ['type', 'name', 'dynamic', 'pool_uuid']

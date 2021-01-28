@@ -22,8 +22,8 @@
 import copy
 import testtools
 
-from cgtsclient.tests import utils
-import cgtsclient.v1.ihost
+from ...tests import utils
+from ...v1 import ihost
 
 IHOST = {'id': 123,
          'uuid': '66666666-7777-8888-9999-000000000000',
@@ -96,7 +96,7 @@ class HostManagerTest(testtools.TestCase):
     def setUp(self):
         super(HostManagerTest, self).setUp()
         self.api = utils.FakeAPI(fixtures)
-        self.mgr = cgtsclient.v1.ihost.ihostManager(self.api)
+        self.mgr = ihost.ihostManager(self.api)
 
     def test_ihost_list(self):
         ihost = self.mgr.list()

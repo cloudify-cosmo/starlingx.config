@@ -6,8 +6,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def do_registry_image_list(cc, args):

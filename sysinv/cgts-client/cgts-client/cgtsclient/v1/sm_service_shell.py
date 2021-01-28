@@ -19,8 +19,8 @@
 #
 import socket
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_service_show(service):

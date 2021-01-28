@@ -7,8 +7,9 @@
 import copy
 import testtools
 
-from cgtsclient.tests import utils
-import cgtsclient.v1.controller_fs
+from ...tests import utils
+from ...tests import utils
+from ...v1 import controller_fs
 
 CONTROLLER_FS = {
     'uuid': '66666666-7777-8888-9999-000000000000',
@@ -58,7 +59,7 @@ class ControllerFsManagerTest(testtools.TestCase):
     def setUp(self):
         super(ControllerFsManagerTest, self).setUp()
         self.api = utils.FakeAPI(fixtures)
-        self.mgr = cgtsclient.v1.controller_fs.ControllerFsManager(self.api)
+        self.mgr = controller_fs.ControllerFsManager(self.api)
 
     def test_controller_fs_list(self):
         controllerfs = self.mgr.list()

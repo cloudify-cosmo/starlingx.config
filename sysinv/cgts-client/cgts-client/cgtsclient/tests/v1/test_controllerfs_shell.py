@@ -7,9 +7,9 @@
 import copy
 import mock
 
-from cgtsclient.tests import test_shell
-from cgtsclient.v1.controller_fs import ControllerFs
-from cgtsclient.v1.isystem import isystem
+from ...tests import test_shell
+from ...v1.controller_fs import ControllerFs
+from ...v1.isystem import isystem
 
 FAKE_CONTROLLER_FS = {
     'uuid': '66666666-7777-8888-9999-000000000000',

@@ -13,8 +13,8 @@ import argparse
 import sys
 import time
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 CONTROLLER = 'controller'
 
@@ -117,8 +117,8 @@ def do_drbdsync_modify(cc, args):
                 hosts.append(ihost.hostname)
         if do_wait:
             if x == 0:
-                print(("waiting for hosts: %s to finish configuring" %
-                       ', '.join(hosts)), end=' ')
+                print('waiting for hosts: {s} to finish configuring'.format(
+                    s=', '.join(hosts)), end=' ')
                 sys.stdout.flush()
             else:
                 print(".", end=' ')

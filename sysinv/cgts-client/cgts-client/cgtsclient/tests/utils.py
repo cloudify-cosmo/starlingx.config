@@ -17,7 +17,7 @@ import copy
 import fixtures
 import testtools
 
-from cgtsclient.common import http
+from ..common import http
 from six import StringIO
 
 

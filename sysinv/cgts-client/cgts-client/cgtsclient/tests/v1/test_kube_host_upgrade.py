@@ -19,8 +19,8 @@
 
 import testtools
 
-from cgtsclient.tests import utils
-import cgtsclient.v1.kube_host_upgrade
+from ...tests import utils
+from ...v1 import kube_host_upgrade
 
 
 KUBE_HOST_UPGRADE = {'id': 1,
@@ -58,7 +58,7 @@ class KubeHostUpgradeManagerTest(testtools.TestCase):
     def setUp(self):
         super(KubeHostUpgradeManagerTest, self).setUp()
         self.api = utils.FakeAPI(fixtures)
-        self.mgr = cgtsclient.v1.kube_host_upgrade.KubeHostUpgradeManager(
+        self.mgr = kube_host_upgrade.KubeHostUpgradeManager(
             self.api)
 
     def test_list(self):

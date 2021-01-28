@@ -10,15 +10,15 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ethernetport as ethernetport_utils
-from cgtsclient.v1 import icpu as icpu_utils
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import interface_datanetwork as ifdn_utils
-from cgtsclient.v1 import interface_network as ifnet_utils
-from cgtsclient.v1 import iprofile as iprofile_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import ethernetport as ethernetport_utils
+from ..v1 import icpu as icpu_utils
+from ..v1 import ihost as ihost_utils
+from ..v1 import interface_datanetwork as ifdn_utils
+from ..v1 import interface_network as ifnet_utils
+from ..v1 import iprofile as iprofile_utils
 import math
 
 #

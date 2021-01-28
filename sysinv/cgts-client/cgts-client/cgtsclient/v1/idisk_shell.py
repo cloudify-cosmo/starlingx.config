@@ -10,10 +10,10 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 import math
 from six.moves import input
 
@@ -109,7 +109,7 @@ def do_host_disk_wipe(cc, args):
             ("WARNING: This operation is irreversible and all data on the "
              "specified disk will be lost.\n"
              "Continue [yes/N]: ")
-        confirm = input(warning_message)
+        confirm = eval(input(warning_message))
         if confirm != 'yes':
             print("Operation cancelled.")
             return

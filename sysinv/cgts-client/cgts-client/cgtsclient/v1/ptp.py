@@ -6,8 +6,8 @@
 #
 ########################################################################
 
-from cgtsclient.common import base
-from cgtsclient import exc
+from ..common import base
+from .. import exc
 
 
 CREATION_ATTRIBUTES = []

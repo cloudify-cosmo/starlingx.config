@@ -15,14 +15,14 @@ import datetime
 import os
 
 from cgtsclient._i18n import _
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import icpu as icpu_utils
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import iinterface as iinterface_utils
-from cgtsclient.v1 import iprofile as iprofile_utils
-from cgtsclient.v1 import istor as istor_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import icpu as icpu_utils
+from ..v1 import ihost as ihost_utils
+from ..v1 import iinterface as iinterface_utils
+from ..v1 import iprofile as iprofile_utils
+from ..v1 import istor as istor_utils
 from six.moves import input
 
 
@@ -772,7 +772,7 @@ def do_host_downgrade(cc, args):
             'Only proceed once the system data has been copied to another '
             'system.\n'
             'Are you absolutely sure you want to continue?  [yes/N]: ')
-        confirm = input(warning_message)
+        confirm = eval(input(warning_message))
         if confirm != 'yes':
             print("Operation cancelled.")
             return
@@ -801,7 +801,7 @@ def do_host_upgrade(cc, args):
             'Only proceed once the system data has been copied to another '
             'system.\n'
             'Are you absolutely sure you want to continue?  [yes/N]: ')
-        confirm = input(warning_message)
+        confirm = eval(input(warning_message))
         if confirm != 'yes':
             print("Operation cancelled.")
             return

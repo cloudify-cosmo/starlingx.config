@@ -9,9 +9,9 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import constants
+from ..common import utils
+from .. import exc
 from six.moves import input
 
 
@@ -129,7 +129,7 @@ def do_upgrade_abort(cc, args):
                 'revert to the state when controller-0 was last active.\n\n'
                 'Continue [yes/N]: ')
 
-    confirm = input(warning_message)
+    confirm = eval(input(warning_message))
     if confirm != 'yes':
         print("Operation cancelled.")
         return

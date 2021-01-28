@@ -7,8 +7,8 @@
 
 
 from cgtsclient._i18n import _
-from cgtsclient.common import base
-from cgtsclient import exc
+from ..common import base
+from .. import exc
 
 
 CREATION_ATTRIBUTES = ['ihost_uuid', 'inode_uuid', 'cpu', 'core', 'thread',
@@ -92,7 +92,7 @@ class icpuManager(base.Manager):
         return self._update(path, patch)
 
 
-class CpuFunction ():
+class CpuFunction(object):
     def __init__(self, function):
         self.allocated_function = function
         self.socket_cores = {}

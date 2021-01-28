@@ -7,9 +7,9 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient import exc
-from cgtsclient.v1 import port
+from ..common import base
+from .. import exc
+from ..v1 import port
 
 
 CREATION_ATTRIBUTES = ['ifname', 'iftype', 'ihost_uuid', 'imtu', 'ifclass',

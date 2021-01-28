@@ -21,14 +21,15 @@ The basic idea is:
 
 """
 
-import copy
 import re
 import six
+import copy
 import textwrap
 
-from cgtsclient.common.cli_no_wrap import is_nowrap_set
-from cgtsclient.common.cli_no_wrap import set_no_wrap
 from prettytable import _get_size
+
+from .cli_no_wrap import (is_nowrap_set, set_no_wrap)
+from .utils import get_terminal_size
 
 UUID_MIN_LENGTH = 36
 
@@ -52,7 +53,6 @@ def _get_width(value):
 
 
 def _get_terminal_width():
-    from cgtsclient.common.utils import get_terminal_size
     result = get_terminal_size()[0]
     return result
 
@@ -104,9 +104,9 @@ class WrapperContext(object):
           column formatters and summing up their widths
         :return: total table width
         """
-        widths = [w.get_actual_column_char_len(w.get_calculated_desired_width(), check_remaining_row_chars=False) for w
-                  in
-                  self.wrappers]
+        widths = [w.get_actual_column_char_len(
+            w.get_calculated_desired_width(),
+            check_remaining_row_chars=False) for w in self.wrappers]
         chars_used_by_data = sum(widths)
         width = self.non_data_chrs_used_by_table + chars_used_by_data
         return width
@@ -131,9 +131,11 @@ def field_value_function_factory(formatter, field):
 
     def field_value_function_builder(data):
         if isinstance(data, dict):
-            formatter.get_field_value = lambda celldata: celldata.get(field, None)
+            formatter.get_field_value = lambda celldata: celldata.get(
+                field, None)
         else:
-            formatter.get_field_value = lambda celldata: getattr(celldata, field)
+            formatter.get_field_value = lambda celldata: getattr(
+                celldata, field)
         return formatter.get_field_value(data)
 
     return field_value_function_builder
@@ -426,7 +428,7 @@ def wrapper_formatter_factory(ctx, field, formatter):
 
 
 def build_column_stats_for_best_guess_formatting(objs, fields, field_labels, custom_formatters={}):
-    class ColumnStats:
+    class ColumnStats(object):
         def __init__(self, field, field_label, custom_formatter=None):
             self.field = field
             self.field_label = field_label

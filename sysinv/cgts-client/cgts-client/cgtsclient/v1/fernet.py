@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import base
+from ..common import base
 
 
 class FernetKey(base.Resource):

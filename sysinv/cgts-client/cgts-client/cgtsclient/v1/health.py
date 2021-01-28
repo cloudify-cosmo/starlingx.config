@@ -6,7 +6,7 @@
 #
 
 
-from cgtsclient.common import base
+from ..common import base
 
 
 class HealthManager(base.Manager):

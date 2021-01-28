@@ -7,10 +7,10 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import icpu
+from ..common import base
+from ..common import utils
+from .. import exc
+from ..v1 import icpu
 
 
 CREATION_ATTRIBUTES = ['hostname', 'personality', 'subfunctions',

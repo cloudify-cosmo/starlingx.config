@@ -9,12 +9,12 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import idisk as idisk_utils
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import partition as part_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import idisk as idisk_utils
+from ..v1 import ihost as ihost_utils
+from ..v1 import partition as part_utils
 import math
 
 

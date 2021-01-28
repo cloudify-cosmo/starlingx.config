@@ -5,10 +5,10 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import pci_device
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
+from ..v1 import pci_device
 
 
 def _print_device_label_show(obj):

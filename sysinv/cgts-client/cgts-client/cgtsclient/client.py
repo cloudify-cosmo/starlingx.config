@@ -23,14 +23,7 @@ def _get_ksclient(**kwargs):
             * insecure: allow insecure SSL (no cert verification)
             * project_name: Project name for project scoping.
     """
-    return ksclient.Client(username=kwargs.get('username'),
-                           password=kwargs.get('password'),
-                           user_domain_name=kwargs.get('user_domain_name'),
-                           project_domain_name=kwargs.get('project_domain_name'),
-                           project_name=kwargs.get('project_name'),
-                           auth_url=kwargs.get('auth_url'),
-                           insecure=kwargs.get('insecure'),
-                           cacert=kwargs.get('os_cacert'))
+    return ksclient.Client(**kwargs)
 
 
 def _get_sm_endpoint(client, **kwargs):

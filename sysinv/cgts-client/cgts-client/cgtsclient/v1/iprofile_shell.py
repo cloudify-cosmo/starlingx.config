@@ -9,6 +9,7 @@
 
 # All Rights Reserved.
 #
+from past.utils import old_div
 
 from ..common import constants
 from ..common import utils
@@ -323,7 +324,8 @@ def get_storconfig_detailed(iprofile):
         if stor.function == 'journal' and count > 1:
             str += " %s" % journals[stor.uuid]
         if stor.function == 'osd':
-            str += ", ceph journal: size %s GiB, " % (stor.journal_size_mib / 1024)
+            str += ", ceph journal: size %s GiB, " % (
+                old_div(stor.journal_size_mib, 1024))
             if stor.journal_location == stor.uuid:
                 str += "collocated on osd stor"
             else:

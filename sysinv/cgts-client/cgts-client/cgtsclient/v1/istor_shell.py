@@ -7,6 +7,7 @@
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 # All Rights Reserved.
 #
+from past.utils import old_div
 
 from ..common import utils
 from .. import exc
@@ -55,7 +56,7 @@ def do_host_stor_show(cc, args):
 
     # convert journal size from mib to gib when display
     if i.journal_size_mib:
-        i.journal_size_mib = i.journal_size_mib / 1024
+        i.journal_size_mib = old_div(i.journal_size_mib, 1024)
 
     _print_istor_show(i)
 
@@ -73,7 +74,7 @@ def do_host_stor_list(cc, args):
 
         # convert journal size from mib to gib when display
         if i.journal_size_mib:
-            i.journal_size_mib = i.journal_size_mib / 1024
+            i.journal_size_mib = old_div(i.journal_size_mib, 1024)
 
     field_labels = ['uuid', 'function', 'osdid', 'state',
                     'idisk_uuid', 'journal_path', 'journal_node',

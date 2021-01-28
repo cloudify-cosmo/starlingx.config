@@ -754,7 +754,7 @@ def unset_no_wrap_on_formatters(orig_no_wrap_settings):
 
 def _simpleTestHarness(no_wrap):
 
-    from cgtsclient.common import utils
+    from ..common import utils
 
     def testFormatter(event):
         return "*{}".format(event["state"])

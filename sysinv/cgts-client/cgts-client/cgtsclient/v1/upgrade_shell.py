@@ -134,7 +134,7 @@ def do_upgrade_abort(cc, args):
         print("Operation cancelled.")
         return
     elif abort_required:
-        confirm = input("Type 'abort' to confirm: ")
+        confirm = eval(input("Type 'abort' to confirm: "))
         if confirm != 'abort':
             print("Operation cancelled.")
             return

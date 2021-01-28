@@ -13,7 +13,7 @@ from ..common import utils
 from ..v1 import ihost as ihost_utils
 
 
-class LldpNeighbourObj:
+class LldpNeighbourObj(object):
     def __init__(self, dictionary):
         for k, v in dictionary.items():
             setattr(self, k, v)

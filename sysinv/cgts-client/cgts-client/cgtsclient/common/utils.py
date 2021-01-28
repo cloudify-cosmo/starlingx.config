@@ -43,10 +43,10 @@ from datetime import datetime
 from dateutil import parser
 from functools import wraps
 
-from cgtsclient import exc
+from .. import exc
 from oslo_utils import importutils
 
-from cgtsclient.common import wrapping_formatters
+from ..common import wrapping_formatters
 from six.moves import input
 
 

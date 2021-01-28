@@ -1,91 +1,3 @@
---- ./cgtsclient/common/wrapping_formatters.py	(original)
-+++ ./cgtsclient/common/wrapping_formatters.py	(refactored)
-@@ -21,6 +21,7 @@
- 
- """
- 
-+from builtins import object
- import copy
- import re
- import six
-@@ -426,7 +427,7 @@
- 
- 
- def build_column_stats_for_best_guess_formatting(objs, fields, field_labels, custom_formatters={}):
--    class ColumnStats:
-+    class ColumnStats(object):
-         def __init__(self, field, field_label, custom_formatter=None):
-             self.field = field
-             self.field_label = field_label
---- ./cgtsclient/tests/test_utils.py	(original)
-+++ ./cgtsclient/tests/test_utils.py	(refactored)
-@@ -14,6 +14,7 @@
- #    under the License.
- 
- 
-+from builtins import object
- import sys
- 
- from cgtsclient.common import utils
-@@ -25,7 +26,7 @@
- class UtilsTest(test_utils.BaseTestCase):
- 
-     def test_prettytable(self):
--        class Struct:
-+        class Struct(object):
-             def __init__(self, **entries):
-                 self.__dict__.update(entries)
- 
---- ./cgtsclient/v1/iHost_shell.py	(original)
-+++ ./cgtsclient/v1/iHost_shell.py	(refactored)
-@@ -772,7 +772,7 @@
-             'Only proceed once the system data has been copied to another '
-             'system.\n'
-             'Are you absolutely sure you want to continue?  [yes/N]: ')
--        confirm = input(warning_message)
-+        confirm = eval(input(warning_message))
-         if confirm != 'yes':
-             print("Operation cancelled.")
-             return
-@@ -801,7 +801,7 @@
-             'Only proceed once the system data has been copied to another '
-             'system.\n'
-             'Are you absolutely sure you want to continue?  [yes/N]: ')
--        confirm = input(warning_message)
-+        confirm = eval(input(warning_message))
-         if confirm != 'yes':
-             print("Operation cancelled.")
-             return
---- ./cgtsclient/v1/icpu.py	(original)
-+++ ./cgtsclient/v1/icpu.py	(refactored)
-@@ -6,6 +6,7 @@
- #
- 
- 
-+from builtins import object
- from cgtsclient._i18n import _
- from cgtsclient.common import base
- from cgtsclient import exc
-@@ -92,7 +93,7 @@
-         return self._update(path, patch)
- 
- 
--class CpuFunction ():
-+class CpuFunction(object):
-     def __init__(self, function):
-         self.allocated_function = function
-         self.socket_cores = {}
---- ./cgtsclient/v1/idisk_shell.py	(original)
-+++ ./cgtsclient/v1/idisk_shell.py	(refactored)
-@@ -109,7 +109,7 @@
-             ("WARNING: This operation is irreversible and all data on the "
-              "specified disk will be lost.\n"
-              "Continue [yes/N]: ")
--        confirm = input(warning_message)
-+        confirm = eval(input(warning_message))
-         if confirm != 'yes':
-             print("Operation cancelled.")
-             return
 --- ./cgtsclient/v1/iprofile_shell.py	(original)
 +++ ./cgtsclient/v1/iprofile_shell.py	(refactored)
 @@ -1,3 +1,4 @@
@@ -93,108 +5,18 @@
  
  #
  # Copyright (c) 2013-2018 Wind River Systems, Inc.
-@@ -10,6 +11,7 @@
- # All Rights Reserved.
- #
- 
-+from past.utils import old_div
- from cgtsclient.common import constants
- from cgtsclient.common import utils
- from cgtsclient import exc
-@@ -323,7 +325,7 @@
-         if stor.function == 'journal' and count > 1:
+@@ -325,7 +326,7 @@
              str += " %s" % journals[stor.uuid]
          if stor.function == 'osd':
--            str += ", ceph journal: size %s GiB, " % (stor.journal_size_mib / 1024)
-+            str += ", ceph journal: size %s GiB, " % (old_div(stor.journal_size_mib, 1024))
+             str += ", ceph journal: size %s GiB, " % (
+-                        stor.journal_size_mib / 1024)
++                        old_div(stor.journal_size_mib, 1024))
              if stor.journal_location == stor.uuid:
                  str += "collocated on osd stor"
              else:
---- ./cgtsclient/v1/istor_shell.py	(original)
-+++ ./cgtsclient/v1/istor_shell.py	(refactored)
-@@ -1,3 +1,4 @@
-+from __future__ import division
- #
- # Copyright (c) 2013-2018 Wind River Systems, Inc.
- #
-@@ -8,6 +9,7 @@
- # All Rights Reserved.
- #
- 
-+from past.utils import old_div
- from cgtsclient.common import utils
- from cgtsclient import exc
- from cgtsclient.v1 import ihost as ihost_utils
-@@ -55,7 +57,7 @@
- 
-     # convert journal size from mib to gib when display
-     if i.journal_size_mib:
--        i.journal_size_mib = i.journal_size_mib / 1024
-+        i.journal_size_mib = old_div(i.journal_size_mib, 1024)
- 
-     _print_istor_show(i)
- 
-@@ -73,7 +75,7 @@
- 
-         # convert journal size from mib to gib when display
-         if i.journal_size_mib:
--            i.journal_size_mib = i.journal_size_mib / 1024
-+            i.journal_size_mib = old_div(i.journal_size_mib, 1024)
- 
-     field_labels = ['uuid', 'function', 'osdid', 'state',
-                     'idisk_uuid', 'journal_path', 'journal_node',
---- ./cgtsclient/v1/isystem_shell.py	(original)
-+++ ./cgtsclient/v1/isystem_shell.py	(refactored)
-@@ -129,7 +129,7 @@
-             'before continue.\n'
-             'Are you sure you want to continue [yes/N]: ' % mode_text)
- 
--        confirm = input(warning_message)
-+        confirm = eval(input(warning_message))
-         if confirm != 'yes':
-             print("Operation cancelled.")
-             return
---- ./cgtsclient/v1/lldp_agent_shell.py	(original)
-+++ ./cgtsclient/v1/lldp_agent_shell.py	(refactored)
-@@ -9,11 +9,12 @@
- # All Rights Reserved.
- #
- 
-+from builtins import object
- from cgtsclient.common import utils
- from cgtsclient.v1 import ihost as ihost_utils
- 
- 
--class LldpAgentObj:
-+class LldpAgentObj(object):
-     def __init__(self, dictionary):
-         for k, v in dictionary.items():
-             setattr(self, k, v)
---- ./cgtsclient/v1/lldp_neighbour_shell.py	(original)
-+++ ./cgtsclient/v1/lldp_neighbour_shell.py	(refactored)
-@@ -9,11 +9,12 @@
- # All Rights Reserved.
- #
- 
-+from builtins import object
- from cgtsclient.common import utils
- from cgtsclient.v1 import ihost as ihost_utils
- 
- 
--class LldpNeighbourObj:
-+class LldpNeighbourObj(object):
-     def __init__(self, dictionary):
-         for k, v in dictionary.items():
-             setattr(self, k, v)
 --- ./cgtsclient/v1/upgrade_shell.py	(original)
 +++ ./cgtsclient/v1/upgrade_shell.py	(refactored)
-@@ -129,12 +129,12 @@
-                 'revert to the state when controller-0 was last active.\n\n'
-                 'Continue [yes/N]: ')
- 
--    confirm = input(warning_message)
-+    confirm = eval(input(warning_message))
-     if confirm != 'yes':
+@@ -134,7 +134,7 @@
          print("Operation cancelled.")
          return
      elif abort_required:

@@ -36,7 +36,7 @@ try:
 except ImportError:
     import simplejson as json
 
-from cgtsclient import exc as exceptions
+from .. import exc as exceptions
 from neutronclient.common import utils
 
 _logger = logging.getLogger(__name__)

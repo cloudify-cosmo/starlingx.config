@@ -29,7 +29,6 @@ import textwrap
 from prettytable import _get_size
 
 from .cli_no_wrap import (is_nowrap_set, set_no_wrap)
-from .utils import get_terminal_size
 
 UUID_MIN_LENGTH = 36
 
@@ -40,7 +39,7 @@ wordsep_re = re.compile(r'(\s+|'                          # any whitespace
                         r'\.|'
                         r':|'
                         r'[^\s\w]*\w+[^0-9\W]-(?=\w+[^0-9\W])|'   # hyphenated words
-                        r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w))')   # em-dash
+                        r'(?<=[\w!\"\'&.,?])-{2,}(?=\w))')   # em-dash
 
 textwrap.TextWrapper.wordsep_re = wordsep_re
 
@@ -646,7 +645,7 @@ def build_wrapping_formatters(objs, fields, field_labels, format_spec, add_blank
     if objs is None or len(objs) == 0:
         return {}
 
-    biggest_word_pattern = re.compile("[\.:,;\!\?\\ =-\_]")
+    biggest_word_pattern = re.compile("[.:,;!? =-_]")
 
     def get_biggest_word(s):
         return max(biggest_word_pattern.split(s), key=len)
@@ -803,6 +802,39 @@ def _simpleTestHarness(no_wrap):
                      reversesort=True, no_wrap_fields=['entity_instance_id'])
 
     print("nowrap = {}".format(is_nowrap_set()))
+
+
+def get_terminal_size():
+    """Returns a tuple (x, y) representing the width(x) and the height(x)
+    in characters of the terminal window.
+    """
+
+    def ioctl_GWINSZ(fd):
+        try:
+            import fcntl
+            import struct
+            import termios
+            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ,
+                                                 '1234'))
+        except Exception:
+            return None
+        if cr == (0, 0):
+            return None
+        if cr == (0, 0):
+            return None
+        return cr
+
+    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
+    if not cr:
+        try:
+            fd = os.open(os.ctermid(), os.O_RDONLY)
+            cr = ioctl_GWINSZ(fd)
+            os.close(fd)
+        except Exception:
+            pass
+    if not cr:
+        cr = (os.environ.get('LINES', 25), os.environ.get('COLUMNS', 80))
+    return int(cr[1]), int(cr[0])
 
 
 if __name__ == "__main__":

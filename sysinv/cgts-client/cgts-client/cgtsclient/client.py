@@ -4,9 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+from keystoneclient.v3 import client as ksclient
+
 from ._i18n import _
-from .common import utils
 from . import exc
+from .common import utils
 
 
 def _get_ksclient(**kwargs):
@@ -21,7 +23,6 @@ def _get_ksclient(**kwargs):
             * insecure: allow insecure SSL (no cert verification)
             * project_name: Project name for project scoping.
     """
-    from keystoneclient.v3 import client as ksclient
     return ksclient.Client(username=kwargs.get('username'),
                            password=kwargs.get('password'),
                            user_domain_name=kwargs.get('user_domain_name'),

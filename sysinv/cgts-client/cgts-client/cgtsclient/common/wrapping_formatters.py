@@ -20,6 +20,7 @@ The basic idea is:
    the existing prettyTable code base for rendering.
 
 """
+
 import copy
 import re
 import six

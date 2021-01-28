@@ -18,7 +18,7 @@
 Command-line interface for System Inventory and Maintenance
 """
 
-from __future__ import print_function
+
 import argparse
 import httplib2
 import logging

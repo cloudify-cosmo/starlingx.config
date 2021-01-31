@@ -8,10 +8,10 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import ilvg as ilvg_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
+from ..v1 import ilvg as ilvg_utils
 from oslo_serialization import jsonutils
 
 

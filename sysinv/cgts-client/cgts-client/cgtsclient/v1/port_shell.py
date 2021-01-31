@@ -9,9 +9,9 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 
 
 def _print_port_show(port):
@@ -66,7 +66,7 @@ def do_host_port_show(cc, args):
 def do_host_port_list(cc, args):
     """List host ports."""
 
-    from cgtsclient.common import wrapping_formatters
+    from ..common import wrapping_formatters
 
     terminal_width = utils.get_terminal_size()[0]
 

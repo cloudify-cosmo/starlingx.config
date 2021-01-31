@@ -6,9 +6,9 @@
 
 import mock
 
-from cgtsclient.tests import test_shell
-from cgtsclient.v1.ihost import ihost
-from cgtsclient.v1.kube_host_upgrade import KubeHostUpgrade
+from ...tests import test_shell
+from ...v1.ihost import ihost
+from ...v1.kube_host_upgrade import KubeHostUpgrade
 
 FAKE_KUBE_HOST_UPGRADE = {
     'id': 100,

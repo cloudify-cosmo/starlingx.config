@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2016 Wind River Systems, Inc.
 #
@@ -8,10 +9,10 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 
 
 def _print_ceph_mon_show(ceph_mon):

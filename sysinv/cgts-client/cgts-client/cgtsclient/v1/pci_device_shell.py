@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 
 # PCI Device Class ID in hexadecimal string
 PCI_DEVICE_CLASS_FPGA = '120000'

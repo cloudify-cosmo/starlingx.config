@@ -14,7 +14,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from __future__ import print_function
+
 try:
     import tsconfig.tsconfig as tsc
     is_remote = False
@@ -43,10 +43,10 @@ from datetime import datetime
 from dateutil import parser
 from functools import wraps
 
-from cgtsclient import exc
+from .. import exc
 from oslo_utils import importutils
 
-from cgtsclient.common import wrapping_formatters
+from ..common import wrapping_formatters
 from six.moves import input
 
 
@@ -244,7 +244,7 @@ def pt_builder(field_labels, fields, formatters, paging, printer=default_printer
             self.fields = fields
             self.formatters = formatters
             self.header_height = 0
-            self.terminal_width, self.terminal_height = get_terminal_size()
+            self.terminal_width, self.terminal_height = wrapping_formatters.get_terminal_size()
             self.terminal_lines_left = self.terminal_height
             self.paging = not no_paging
             self.paged_rows_added = 0
@@ -669,39 +669,6 @@ def is_uuid_like(val):
         return str(uuid.UUID(val)) == val
     except (TypeError, ValueError, AttributeError):
         return False
-
-
-def get_terminal_size():
-    """Returns a tuple (x, y) representing the width(x) and the height(x)
-    in characters of the terminal window.
-    """
-
-    def ioctl_GWINSZ(fd):
-        try:
-            import fcntl
-            import struct
-            import termios
-            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ,
-                                                 '1234'))
-        except Exception:
-            return None
-        if cr == (0, 0):
-            return None
-        if cr == (0, 0):
-            return None
-        return cr
-
-    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
-    if not cr:
-        try:
-            fd = os.open(os.ctermid(), os.O_RDONLY)
-            cr = ioctl_GWINSZ(fd)
-            os.close(fd)
-        except Exception:
-            pass
-    if not cr:
-        cr = (os.environ.get('LINES', 25), os.environ.get('COLUMNS', 80))
-    return int(cr[1]), int(cr[0])
 
 
 def normalize_field_data(obj, fields):

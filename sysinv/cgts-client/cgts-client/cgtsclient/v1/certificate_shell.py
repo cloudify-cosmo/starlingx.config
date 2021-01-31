@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2018 Wind River Systems, Inc.
 #
@@ -9,8 +10,8 @@
 #
 import os
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_certificate_show(certificate):

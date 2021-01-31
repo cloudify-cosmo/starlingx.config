@@ -36,7 +36,7 @@ try:
 except ImportError:
     import simplejson as json
 
-from cgtsclient import exc as exceptions
+from .. import exc as exceptions
 from neutronclient.common import utils
 
 _logger = logging.getLogger(__name__)
@@ -172,8 +172,6 @@ class HTTPClient(httplib2.Http):
 
         if 'body' in kwargs:
             kargs['body'] = kwargs['body']
-        args = utils.safe_encode_list(args)
-        kargs = utils.safe_encode_dict(kargs)
         if self.log_credentials:
             log_kargs = kargs
         else:
@@ -182,8 +180,6 @@ class HTTPClient(httplib2.Http):
         utils.http_log_req(_logger, args, log_kargs)
         try:
             resp, body = self.request(*args, **kargs)
-        except httplib2.SSLHandshakeError as e:
-            raise exceptions.SslCertificateValidationError(reason=e)
         except Exception as e:
             # Wrap the low-level connection error (socket timeout, redirect
             # limit, decompression error, etc) into our custom high-level
@@ -195,15 +191,7 @@ class HTTPClient(httplib2.Http):
             # seem to be stepping on each other resulting in bogus fd's being
             # picked up for making http requests
             self.connections.clear()
-
-        # Read body into string if it isn't obviously image data
-        body_str = None
-        if 'content-type' in resp and resp['content-type'] != 'application/octet-stream':
-            body_str = ''.join([chunk for chunk in body])
-            self.http_log_resp(_logger, resp, body_str)
-            body = body_str
-        else:
-            self.http_log_resp(_logger, resp, body)
+        self.http_log_resp(_logger, resp, body)
 
         status_code = self.get_status_code(resp)
         if status_code == 401:
@@ -253,9 +241,8 @@ class HTTPClient(httplib2.Http):
             return resp, list()
 
         if 'application/json' in content_type:
-            body = ''.join([chunk for chunk in body_iter])
             try:
-                body = json.loads(body)
+                body = json.loads(body_iter)
             except ValueError:
                 _logger.error('Could not decode response body as JSON')
         else:
@@ -558,9 +545,9 @@ class ResponseBodyIterator(object):
 
     def __iter__(self):
         while True:
-            yield six.next()
+            yield next(six)
 
-    def next(self):
+    def __next__(self):
         chunk = self.resp.read(CHUNKSIZE)
         if chunk:
             return chunk

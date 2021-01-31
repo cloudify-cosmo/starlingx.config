@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2018 Wind River Systems, Inc.
 #
@@ -7,15 +8,15 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import storage_ceph  # noqa
-from cgtsclient.v1 import storage_ceph_external  # noqa
-from cgtsclient.v1 import storage_external  # noqa
-from cgtsclient.v1 import storage_file  # noqa
-from cgtsclient.v1 import storage_lvm  # noqa
+from ..common import base
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import storage_ceph  # noqa
+from ..v1 import storage_ceph_external  # noqa
+from ..v1 import storage_external  # noqa
+from ..v1 import storage_file  # noqa
+from ..v1 import storage_lvm  # noqa
 from oslo_serialization import jsonutils
 
 CREATION_ATTRIBUTES = ['forisystemid', 'backend']

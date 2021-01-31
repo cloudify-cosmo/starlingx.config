@@ -6,8 +6,8 @@
 
 import mock
 
-from cgtsclient.tests import test_shell
-from cgtsclient.v1.kube_version import KubeVersion
+from ...tests import test_shell
+from ...v1.kube_version import KubeVersion
 
 
 class KubeVersionTest(test_shell.ShellTest):

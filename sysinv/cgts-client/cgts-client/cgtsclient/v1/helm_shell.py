@@ -1,3 +1,4 @@
+
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 #
 # Copyright (c) 2018 Wind River Systems, Inc.
@@ -8,9 +9,9 @@
 from collections import OrderedDict
 import yaml
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import app as app_utils
+from ..common import utils
+from .. import exc
+from ..v1 import app as app_utils
 
 
 def _print_helm_chart(chart):

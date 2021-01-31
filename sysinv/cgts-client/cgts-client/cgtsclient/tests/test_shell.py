@@ -12,10 +12,10 @@ from six.moves import cStringIO as StringIO
 import sys
 from testtools import matchers
 
-from cgtsclient import exc
-from cgtsclient import shell as cgts_shell
-from cgtsclient.tests import utils
-from cgtsclient.v1.ihost import ihost
+from .. import exc
+from .. import shell as cgts_shell
+from ..tests import utils
+from ..v1.ihost import ihost
 
 FAKE_ENV = {'OS_USERNAME': 'username',
             'OS_PASSWORD': 'password',

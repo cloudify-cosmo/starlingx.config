@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2018 Wind River Systems, Inc.
 #
@@ -9,9 +10,9 @@
 #
 
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 
 
 def _print_label_show(obj):

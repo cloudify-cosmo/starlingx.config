@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2014 Wind River Systems, Inc.
 #
@@ -8,10 +9,10 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import iinterface as iinterface_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
+from ..v1 import iinterface as iinterface_utils
 
 
 def _print_iinterface_show(cc, iinterface):

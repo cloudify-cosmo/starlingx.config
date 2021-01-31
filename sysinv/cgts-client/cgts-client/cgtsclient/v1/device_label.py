@@ -4,8 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import base
-from cgtsclient.v1 import options
+from ..common import base
+from ..v1 import options
 
 
 class DeviceLabel(base.Resource):

@@ -4,9 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient._i18n import _
-from cgtsclient.common import utils
-from cgtsclient import exc
+from keystoneclient.v3 import client as ksclient
+
+from ._i18n import _
+from . import exc
+from .common import utils
 
 
 def _get_ksclient(**kwargs):
@@ -21,15 +23,7 @@ def _get_ksclient(**kwargs):
             * insecure: allow insecure SSL (no cert verification)
             * project_name: Project name for project scoping.
     """
-    from keystoneclient.v3 import client as ksclient
-    return ksclient.Client(username=kwargs.get('username'),
-                           password=kwargs.get('password'),
-                           user_domain_name=kwargs.get('user_domain_name'),
-                           project_domain_name=kwargs.get('project_domain_name'),
-                           project_name=kwargs.get('project_name'),
-                           auth_url=kwargs.get('auth_url'),
-                           insecure=kwargs.get('insecure'),
-                           cacert=kwargs.get('os_cacert'))
+    return ksclient.Client(**kwargs)
 
 
 def _get_sm_endpoint(client, **kwargs):

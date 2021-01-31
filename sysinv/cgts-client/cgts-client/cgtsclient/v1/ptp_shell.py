@@ -1,3 +1,4 @@
+
 ########################################################################
 #
 # Copyright (c) 2018-2019 Wind River Systems, Inc.
@@ -6,8 +7,8 @@
 #
 ########################################################################
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_ptp_show(ptp):

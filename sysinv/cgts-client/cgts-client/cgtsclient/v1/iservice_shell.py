@@ -1,3 +1,4 @@
+
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 
 # Copyright 2013 Red Hat, Inc.
@@ -19,8 +20,8 @@
 #
 
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_iservice_show(iservice):

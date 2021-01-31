@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2019 Wind River Systems, Inc.
 #
@@ -8,9 +9,9 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import options
+from ..common import utils
+from .. import exc
+from ..v1 import options
 
 
 def _print_service_parameter_show(obj):

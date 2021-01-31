@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2017-2019 Wind River Systems, Inc.
 #
@@ -8,8 +9,8 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def do_license_show(cc, args):

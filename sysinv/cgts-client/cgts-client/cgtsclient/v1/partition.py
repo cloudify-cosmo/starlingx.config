@@ -7,8 +7,8 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient import exc
+from ..common import base
+from .. import exc
 
 
 CREATION_ATTRIBUTES = ['ihost_uuid', 'idisk_uuid', 'size_mib', 'type_guid']

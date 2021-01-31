@@ -9,9 +9,9 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
 
 
 def _bootp_formatter(value):

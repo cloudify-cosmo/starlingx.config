@@ -20,14 +20,15 @@ The basic idea is:
    the existing prettyTable code base for rendering.
 
 """
-import copy
+
 import re
 import six
+import copy
 import textwrap
 
-from cgtsclient.common.cli_no_wrap import is_nowrap_set
-from cgtsclient.common.cli_no_wrap import set_no_wrap
 from prettytable import _get_size
+
+from .cli_no_wrap import (is_nowrap_set, set_no_wrap)
 
 UUID_MIN_LENGTH = 36
 
@@ -38,7 +39,7 @@ wordsep_re = re.compile(r'(\s+|'                          # any whitespace
                         r'\.|'
                         r':|'
                         r'[^\s\w]*\w+[^0-9\W]-(?=\w+[^0-9\W])|'   # hyphenated words
-                        r'(?<=[\w\!\"\'\&\.\,\?])-{2,}(?=\w))')   # em-dash
+                        r'(?<=[\w!\"\'&.,?])-{2,}(?=\w))')   # em-dash
 
 textwrap.TextWrapper.wordsep_re = wordsep_re
 
@@ -51,7 +52,6 @@ def _get_width(value):
 
 
 def _get_terminal_width():
-    from cgtsclient.common.utils import get_terminal_size
     result = get_terminal_size()[0]
     return result
 
@@ -103,9 +103,9 @@ class WrapperContext(object):
           column formatters and summing up their widths
         :return: total table width
         """
-        widths = [w.get_actual_column_char_len(w.get_calculated_desired_width(), check_remaining_row_chars=False) for w
-                  in
-                  self.wrappers]
+        widths = [w.get_actual_column_char_len(
+            w.get_calculated_desired_width(),
+            check_remaining_row_chars=False) for w in self.wrappers]
         chars_used_by_data = sum(widths)
         width = self.non_data_chrs_used_by_table + chars_used_by_data
         return width
@@ -130,9 +130,11 @@ def field_value_function_factory(formatter, field):
 
     def field_value_function_builder(data):
         if isinstance(data, dict):
-            formatter.get_field_value = lambda celldata: celldata.get(field, None)
+            formatter.get_field_value = lambda celldata: celldata.get(
+                field, None)
         else:
-            formatter.get_field_value = lambda celldata: getattr(celldata, field)
+            formatter.get_field_value = lambda celldata: getattr(
+                celldata, field)
         return formatter.get_field_value(data)
 
     return field_value_function_builder
@@ -425,7 +427,7 @@ def wrapper_formatter_factory(ctx, field, formatter):
 
 
 def build_column_stats_for_best_guess_formatting(objs, fields, field_labels, custom_formatters={}):
-    class ColumnStats:
+    class ColumnStats(object):
         def __init__(self, field, field_label, custom_formatter=None):
             self.field = field
             self.field_label = field_label
@@ -643,7 +645,7 @@ def build_wrapping_formatters(objs, fields, field_labels, format_spec, add_blank
     if objs is None or len(objs) == 0:
         return {}
 
-    biggest_word_pattern = re.compile("[\.:,;\!\?\\ =-\_]")
+    biggest_word_pattern = re.compile("[.:,;!? =-_]")
 
     def get_biggest_word(s):
         return max(biggest_word_pattern.split(s), key=len)
@@ -751,7 +753,7 @@ def unset_no_wrap_on_formatters(orig_no_wrap_settings):
 
 def _simpleTestHarness(no_wrap):
 
-    from cgtsclient.common import utils
+    from ..common import utils
 
     def testFormatter(event):
         return "*{}".format(event["state"])
@@ -800,6 +802,39 @@ def _simpleTestHarness(no_wrap):
                      reversesort=True, no_wrap_fields=['entity_instance_id'])
 
     print("nowrap = {}".format(is_nowrap_set()))
+
+
+def get_terminal_size():
+    """Returns a tuple (x, y) representing the width(x) and the height(x)
+    in characters of the terminal window.
+    """
+
+    def ioctl_GWINSZ(fd):
+        try:
+            import fcntl
+            import struct
+            import termios
+            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ,
+                                                 '1234'))
+        except Exception:
+            return None
+        if cr == (0, 0):
+            return None
+        if cr == (0, 0):
+            return None
+        return cr
+
+    cr = ioctl_GWINSZ(0) or ioctl_GWINSZ(1) or ioctl_GWINSZ(2)
+    if not cr:
+        try:
+            fd = os.open(os.ctermid(), os.O_RDONLY)
+            cr = ioctl_GWINSZ(fd)
+            os.close(fd)
+        except Exception:
+            pass
+    if not cr:
+        cr = (os.environ.get('LINES', 25), os.environ.get('COLUMNS', 80))
+    return int(cr[1]), int(cr[0])
 
 
 if __name__ == "__main__":

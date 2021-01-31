@@ -7,8 +7,8 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
-from cgtsclient.v1 import options
+from ..common import base
+from ..v1 import options
 
 
 class KubernetesLabel(base.Resource):

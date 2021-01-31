@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2018 Wind River Systems, Inc.
 #
@@ -7,11 +8,11 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import iinterface as iinterface_utils
-from cgtsclient.v1 import network as network_utils
+from ..common import utils
+from .. import exc
+from ..v1 import ihost as ihost_utils
+from ..v1 import iinterface as iinterface_utils
+from ..v1 import network as network_utils
 
 
 def _print_interface_network_show(cc, obj):

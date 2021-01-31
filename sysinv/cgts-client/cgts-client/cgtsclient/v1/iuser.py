@@ -13,8 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from cgtsclient.common import base
-from cgtsclient import exc
+from ..common import base
+from .. import exc
 
 
 CREATION_ATTRIBUTES = ['root_sig', 'passwd_expiry_days', 'passwd_hash', 'forisystemid']

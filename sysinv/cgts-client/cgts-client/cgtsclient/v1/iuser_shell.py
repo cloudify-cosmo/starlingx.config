@@ -14,8 +14,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_iuser_show(iuser):

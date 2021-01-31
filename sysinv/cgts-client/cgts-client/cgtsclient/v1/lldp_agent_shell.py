@@ -9,11 +9,11 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient.v1 import ihost as ihost_utils
+from ..common import utils
+from ..v1 import ihost as ihost_utils
 
 
-class LldpAgentObj:
+class LldpAgentObj(object):
     def __init__(self, dictionary):
         for k, v in dictionary.items():
             setattr(self, k, v)

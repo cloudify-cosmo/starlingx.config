@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2016 Wind River Systems, Inc.
 #
@@ -8,8 +9,8 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_remotelogging_show(remotelogging):

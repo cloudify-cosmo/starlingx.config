@@ -16,16 +16,16 @@
 
 import sys
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.tests import utils as test_utils
+from ..common import utils
+from .. import exc
+from ..tests import utils as test_utils
 from six.moves import cStringIO as StringIO
 
 
 class UtilsTest(test_utils.BaseTestCase):
 
     def test_prettytable(self):
-        class Struct:
+        class Struct(object):
             def __init__(self, **entries):
                 self.__dict__.update(entries)
 

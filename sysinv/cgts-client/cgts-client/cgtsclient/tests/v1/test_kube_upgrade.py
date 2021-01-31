@@ -19,9 +19,9 @@
 
 import testtools
 
-from cgtsclient.tests import utils
-import cgtsclient.v1.kube_upgrade
-import cgtsclient.v1.kube_upgrade_shell
+from ...tests import utils
+from ...v1 import kube_upgrade
+from ...v1 import kube_upgrade_shell
 
 
 KUBE_UPGRADE = {'from_version': 'v1.42.1',
@@ -79,7 +79,7 @@ class KubeUpgradeManagerTest(testtools.TestCase):
     def setUp(self):
         super(KubeUpgradeManagerTest, self).setUp()
         self.api = utils.FakeAPI(fixtures)
-        self.mgr = cgtsclient.v1.kube_upgrade.KubeUpgradeManager(self.api)
+        self.mgr = kube_upgrade.KubeUpgradeManager(self.api)
 
     def test_list(self):
         kube_upgrade_list = self.mgr.list()
@@ -143,6 +143,6 @@ class KubeUpgradeManagerTest(testtools.TestCase):
             ('PATCH', '/v1/kube_upgrade', {}, patch),
         ]
         self.assertEqual(self.api.calls, expect)
-        self.assertEqual(kube_upgrade.state,
-                         cgtsclient.v1.kube_upgrade_shell.
-                         KUBE_UPGRADE_STATE_UPGRADING_NETWORKING)
+        self.assertEqual(
+            kube_upgrade.state,
+            kube_upgrade_shell.KUBE_UPGRADE_STATE_UPGRADING_NETWORKING)

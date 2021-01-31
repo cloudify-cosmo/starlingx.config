@@ -1,3 +1,4 @@
+
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 #
 # Copyright (c) 2019 Wind River Systems, Inc.
@@ -5,8 +6,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def do_registry_image_list(cc, args):

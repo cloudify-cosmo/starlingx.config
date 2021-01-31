@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2017 Wind River Systems, Inc.
 #
@@ -9,9 +10,9 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import constants
+from ..common import utils
+from .. import exc
 from six.moves import input
 
 
@@ -128,7 +129,7 @@ def do_modify(cc, args):
             'before continue.\n'
             'Are you sure you want to continue [yes/N]: ' % mode_text)
 
-        confirm = input(warning_message)
+        confirm = eval(input(warning_message))
         if confirm != 'yes':
             print("Operation cancelled.")
             return

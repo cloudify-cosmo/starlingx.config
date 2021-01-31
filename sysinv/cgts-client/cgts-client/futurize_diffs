@@ -1,0 +1,27 @@
+--- ./cgtsclient/v1/iprofile_shell.py	(original)
++++ ./cgtsclient/v1/iprofile_shell.py	(refactored)
+@@ -1,3 +1,4 @@
++from __future__ import division
+ 
+ #
+ # Copyright (c) 2013-2018 Wind River Systems, Inc.
+@@ -325,7 +326,7 @@
+             str += " %s" % journals[stor.uuid]
+         if stor.function == 'osd':
+             str += ", ceph journal: size %s GiB, " % (
+-                        stor.journal_size_mib / 1024)
++                        old_div(stor.journal_size_mib, 1024))
+             if stor.journal_location == stor.uuid:
+                 str += "collocated on osd stor"
+             else:
+--- ./cgtsclient/v1/upgrade_shell.py	(original)
++++ ./cgtsclient/v1/upgrade_shell.py	(refactored)
+@@ -134,7 +134,7 @@
+         print("Operation cancelled.")
+         return
+     elif abort_required:
+-        confirm = input("Type 'abort' to confirm: ")
++        confirm = eval(input("Type 'abort' to confirm: "))
+         if confirm != 'abort':
+             print("Operation cancelled.")
+             return

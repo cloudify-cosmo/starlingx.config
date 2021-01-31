@@ -1,3 +1,4 @@
+
 # vim: tabstop=4 shiftwidth=4 softtabstop=4
 #
 # Copyright (c) 2018-2019 Wind River Systems, Inc.
@@ -7,8 +8,8 @@
 import os
 import re
 
-from cgtsclient.common import utils
-from cgtsclient import exc
+from ..common import utils
+from .. import exc
 
 
 def _print_application_show(app, columns=None, output_format=None):

@@ -1,3 +1,4 @@
+
 #
 # Copyright (c) 2013-2018 Wind River Systems, Inc.
 #
@@ -8,16 +9,17 @@
 
 # All Rights Reserved.
 #
+from past.utils import old_div
 
-from cgtsclient.common import constants
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import ethernetport as ethernetport_utils
-from cgtsclient.v1 import icpu as icpu_utils
-from cgtsclient.v1 import ihost as ihost_utils
-from cgtsclient.v1 import interface_datanetwork as ifdn_utils
-from cgtsclient.v1 import interface_network as ifnet_utils
-from cgtsclient.v1 import iprofile as iprofile_utils
+from ..common import constants
+from ..common import utils
+from .. import exc
+from ..v1 import ethernetport as ethernetport_utils
+from ..v1 import icpu as icpu_utils
+from ..v1 import ihost as ihost_utils
+from ..v1 import interface_datanetwork as ifdn_utils
+from ..v1 import interface_network as ifnet_utils
+from ..v1 import iprofile as iprofile_utils
 import math
 
 #
@@ -322,7 +324,8 @@ def get_storconfig_detailed(iprofile):
         if stor.function == 'journal' and count > 1:
             str += " %s" % journals[stor.uuid]
         if stor.function == 'osd':
-            str += ", ceph journal: size %s GiB, " % (stor.journal_size_mib / 1024)
+            str += ", ceph journal: size %s GiB, " % (
+                old_div(stor.journal_size_mib, 1024))
             if stor.journal_location == stor.uuid:
                 str += "collocated on osd stor"
             else:

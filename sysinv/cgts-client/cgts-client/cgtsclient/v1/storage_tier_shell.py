@@ -9,10 +9,10 @@
 # All Rights Reserved.
 #
 
-from cgtsclient.common import utils
-from cgtsclient import exc
-from cgtsclient.v1 import cluster as cluster_utils
-from cgtsclient.v1 import storage_tier as storage_tier_utils
+from ..common import utils
+from .. import exc
+from ..v1 import cluster as cluster_utils
+from ..v1 import storage_tier as storage_tier_utils
 
 
 def _print_tier_show(tier):

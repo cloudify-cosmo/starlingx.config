@@ -7,7 +7,7 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
+from ..common import base
 
 
 class License(base.Resource):

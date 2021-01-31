@@ -19,8 +19,8 @@
 
 import testtools
 
-from cgtsclient.tests import utils
-import cgtsclient.v1.kube_version
+from ...tests import utils
+from ...v1 import kube_version
 
 KUBE_VERSION = {'version': 'v1.42.2',
                 'upgrade_from': ['v1.42.1'],
@@ -63,7 +63,7 @@ class KubeVersionManagerTest(testtools.TestCase):
     def setUp(self):
         super(KubeVersionManagerTest, self).setUp()
         self.api = utils.FakeAPI(fixtures)
-        self.mgr = cgtsclient.v1.kube_version.KubeVersionManager(self.api)
+        self.mgr = kube_version.KubeVersionManager(self.api)
 
     def test_kube_version_list(self):
         kube_versions = self.mgr.list()

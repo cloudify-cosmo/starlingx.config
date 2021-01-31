@@ -7,7 +7,7 @@
 # -*- encoding: utf-8 -*-
 #
 
-from cgtsclient.common import base
+from ..common import base
 
 CREATION_ATTRIBUTES = ['state', 'from_load', 'to_load']
 

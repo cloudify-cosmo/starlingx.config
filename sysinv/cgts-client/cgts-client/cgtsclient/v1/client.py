@@ -13,7 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 #
-# Copyright (c) 2013-2020 Wind River Systems, Inc.
+# Copyright (c) 2013-2021 Wind River Systems, Inc.
 #
 
 
@@ -54,6 +54,7 @@ from ..v1 import isensorgroup
 from ..v1 import istor
 from ..v1 import isystem
 from ..v1 import iuser
+from ..v1 import kube_cluster
 from ..v1 import kube_host_upgrade
 from ..v1 import kube_upgrade
 from ..v1 import kube_version
@@ -85,6 +86,7 @@ from ..v1 import storage_file
 from ..v1 import storage_lvm
 from ..v1 import storage_tier
 from ..v1 import upgrade
+
 
 
 class Client(http.HTTPClient):
@@ -164,6 +166,7 @@ class Client(http.HTTPClient):
         self.fernet = fernet.FernetManager(self)
         self.app = app.AppManager(self)
         self.host_fs = host_fs.HostFsManager(self)
+        self.kube_cluster = kube_cluster.KubeClusterManager(self)
         self.kube_version = kube_version.KubeVersionManager(self)
         self.kube_upgrade = kube_upgrade.KubeUpgradeManager(self)
         self.kube_host_upgrade = kube_host_upgrade.KubeHostUpgradeManager(self)

@@ -88,7 +88,6 @@ from ..v1 import storage_tier
 from ..v1 import upgrade
 
 
-
 class Client(http.HTTPClient):
     """Client for the Cgts v1 API.
 

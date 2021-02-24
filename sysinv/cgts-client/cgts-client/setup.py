@@ -23,7 +23,8 @@ setuptools.setup(
         'Programming Language :: Python :: 2.6',
     ],
     include_package_data=True,
-    setup_requires=['pbr>=0.5'],
+    setup_requires=['pbr>=0.5',
+                    'httplib2'],
     pbr=True,
     packages=setuptools.find_packages()
 )

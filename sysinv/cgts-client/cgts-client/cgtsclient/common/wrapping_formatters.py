@@ -26,7 +26,10 @@ import six
 import copy
 import textwrap
 
-from prettytable import _get_size
+try:
+    from prettytable import _get_size
+except ImportError:
+    from prettytable.prettytable import _get_size
 
 from .cli_no_wrap import (is_nowrap_set, set_no_wrap)
 

@@ -197,11 +197,11 @@ class HTTPClient(httplib2.Http):
         if status_code == 401:
             raise exceptions.HTTPUnauthorized(body)
         elif status_code == 403:
-            error_json = self._extract_error_json(body_str)
+            error_json = self._extract_error_json(body)
             raise exceptions.Forbidden(error_json.get('faultstring'))
         elif 400 <= status_code < 600:
             _logger.warn("Request returned failure status.")
-            error_json = self._extract_error_json(body_str)
+            error_json = self._extract_error_json(body)
             raise exceptions.from_response(
                 resp, error_json.get('faultstring'),
                 error_json.get('debuginfo'), *args)
